@@ -39,7 +39,6 @@
     .nav-logo { display:flex; align-items:center; }
     .nav-logo img { height:75px; width:auto; display:block; }
 
-    /* ── Hamburger button ── */
     .hamburger { display:flex; flex-direction:column; justify-content:center; align-items:center; width:44px; height:44px; border:none; background:transparent; cursor:pointer; gap:0; padding:0; border-radius:12px; transition:background .2s; position:relative; z-index:1100; }
     .hamburger:hover { background:var(--bg-subtle); }
     .hamburger span { display:block; width:22px; height:2px; background:var(--text-1); border-radius:2px; transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .2s ease, width .3s ease; transform-origin:center; }
@@ -49,51 +48,25 @@
     .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
     .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); width:22px; }
 
-    /* ── Slide-in menu panel ── */
-    /* ── Dropdown popover ── */
     .hamburger-wrap { position:relative; }
     .menu-panel {
-      position:absolute;
-      top:calc(100% + 10px);
-      right:0;
-      width:220px;
-      background:var(--bg-card);
-      border:1px solid var(--border);
-      border-radius:18px;
+      position:absolute; top:calc(100% + 10px); right:0; width:220px;
+      background:var(--bg-card); border:1px solid var(--border); border-radius:18px;
       box-shadow:0 8px 40px rgba(15,15,26,.13), 0 2px 8px rgba(15,15,26,.07);
-      z-index:1050;
-      display:flex; flex-direction:column;
-      padding:8px 0 10px;
-      opacity:0;
-      transform:scale(.95) translateY(-8px);
-      transform-origin:top right;
-      pointer-events:none;
-      transition:opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+      z-index:1050; display:flex; flex-direction:column; padding:8px 0 10px;
+      opacity:0; transform:scale(.95) translateY(-8px); transform-origin:top right;
+      pointer-events:none; transition:opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
     }
     [data-theme="dark"] .menu-panel { box-shadow:0 8px 40px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.2); }
     .menu-panel.open { opacity:1; transform:scale(1) translateY(0); pointer-events:all; }
-
-    /* Lightweight backdrop — closes on click, no visual overlay */
     .menu-backdrop { position:fixed; inset:0; z-index:999; pointer-events:none; }
     .menu-backdrop.open { pointer-events:all; }
-
-    /* Menu nav links */
     .menu-nav { display:flex; flex-direction:column; padding:4px 8px; }
-    .menu-nav a {
-      font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500;
-      color:var(--text-1); text-decoration:none;
-      padding:10px 14px; border-radius:10px;
-      display:flex; align-items:center; gap:10px;
-      transition:background .15s, color .15s;
-    }
+    .menu-nav a { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; color:var(--text-1); text-decoration:none; padding:10px 14px; border-radius:10px; display:flex; align-items:center; gap:10px; transition:background .15s, color .15s; }
     .menu-nav a:hover { background:var(--bg-subtle); color:var(--blue); }
     .menu-nav a.active { color:var(--blue); font-weight:600; }
     .menu-nav a .menu-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
-
-    /* Menu divider */
     .menu-divider { height:1px; background:var(--border); margin:6px 14px; }
-
-    /* Theme toggle row */
     .menu-theme-row { display:flex; align-items:center; justify-content:space-between; padding:8px 22px 4px; gap:12px; }
     .menu-theme-label { font-size:14px; font-weight:500; color:var(--text-2); }
     .theme-switch { position:relative; width:44px; height:26px; cursor:pointer; flex-shrink:0; }
@@ -102,8 +75,6 @@
     .theme-track::after { content:''; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:var(--text-3); transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .3s; }
     [data-theme="dark"] .theme-track { background:rgba(41,121,255,.15); border-color:rgba(41,121,255,.3); }
     [data-theme="dark"] .theme-track::after { transform:translateX(18px); background:var(--blue); }
-
-    /* Stagger in */
     .menu-nav a { opacity:0; transform:translateY(-4px); transition:background .15s, color .15s, opacity .2s ease, transform .2s ease; }
     .menu-panel.open .menu-nav a:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:.06s; }
     .menu-panel.open .menu-nav a:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:.10s; }
@@ -140,9 +111,7 @@
     @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
 
-    @media (max-width:768px) {
-      .nav-links { display:none; }
-    }
+    @media (max-width:768px) { .nav-links { display:none; } }
 
     .founder-hero { padding:calc(var(--nav-h) + 80px) 28px 80px; max-width:1100px; margin:0 auto; }
     .founder-grid { display:grid; grid-template-columns:1fr 400px; gap:80px; align-items:start; }
@@ -262,12 +231,23 @@
 
 <section class="values-section">
   <div class="eyebrow fade-up">What we stand for</div>
-  <h2 class="fade-up" style="font-family:'Nunito',sans-serif;font-size:36px;font-weight:900;letter-spacing:-.025em;color:var(--text-1);margin-bottom:10px;line-height:1.1;">Built on four beliefs</h2>
+  <h2 class="fade-up" style="font-family:'Nunito',sans-serif;font-size:36px;font-weight:900;letter-spacing:-.025em;color:var(--text-1);margin-bottom:10px;line-height:1.1;">Built on six beliefs</h2>
   <p class="fade-up" style="font-size:17px;color:var(--text-2);line-height:1.7;max-width:520px;">These aren't marketing words. They're the filter every decision gets run through before anything ships.</p>
   <div class="values-grid">
     <div class="value-card fade-up"><div class="value-icon">🎯</div><div class="value-title">Purpose over features</div><div class="value-desc">Every app has one job. We don't add features to make the app feel bigger — we cut until only the essential remains.</div></div>
     <div class="value-card fade-up"><div class="value-icon">✨</div><div class="value-title">Premium by default</div><div class="value-desc">Craft is the standard, not a tier. Every screen gets the same care, whether it's the first users see or the tenth.</div></div>
-    <div class="value-card fade-up"><div class="value-icon">🔒</div><div class="value-title">Privacy without compromise</div><div class="value-desc">Your data belongs to you. No advertising, no tracking, no selling usage data. Full stop.</div></div>
+    <div class="value-card fade-up" style="border-color:rgba(41,121,255,.35);background:linear-gradient(135deg,var(--bg-card) 0%,rgba(41,121,255,.04) 100%);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:14px;right:16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:rgba(41,121,255,.1);border:1px solid rgba(41,121,255,.25);padding:3px 9px;border-radius:9999px;">Committed</div>
+      <div class="value-icon">🔒</div>
+      <div class="value-title">Privacy without compromise</div>
+      <div class="value-desc" style="margin-bottom:16px;">Your data stays on your device, used only to make the app work — nothing else, ever.</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);"><span style="color:#30D158;font-weight:700;">✓</span> No ads — not now, not ever</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);"><span style="color:#30D158;font-weight:700;">✓</span> No tracking or behavioral analytics</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);"><span style="color:#30D158;font-weight:700;">✓</span> No selling or sharing of usage data</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);"><span style="color:#30D158;font-weight:700;">✓</span> No third-party data brokers</div>
+      </div>
+    </div>
     <div class="value-card fade-up"><div class="value-icon">🛠️</div><div class="value-title">Built from experience</div><div class="value-desc">Each app starts as a lived problem, not a market opportunity. We build what we've needed ourselves.</div></div>
     <div class="value-card fade-up"><div class="value-icon">🌱</div><div class="value-title">Small and intentional</div><div class="value-desc">Staying small is a choice. A small studio ships things with a clear point of view, not a committee's compromise.</div></div>
     <div class="value-card fade-up"><div class="value-icon">♾️</div><div class="value-title">Always iterating</div><div class="value-desc">Shipping is the beginning, not the end. Every app gets better with real use and real feedback.</div></div>
@@ -279,6 +259,7 @@
   <p>Interested in what we're building, or have a project worth discussing?</p>
   <a href="contact.html" class="btn btn-primary">Get in touch →</a>
 </div>
+
 <footer class="footer">
   <img id="footerLogo" src="https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_vert_trans-black.png" alt="Chowen Labs">
   <div class="footer-links">
@@ -290,11 +271,14 @@
   </div>
   <div class="footer-text">© 2026 Chowen Labs, LLC &nbsp;·&nbsp; Bainbridge Island, WA &nbsp;·&nbsp; Built with care.</div>
 </footer>
+
 <script>
   const LOGO_NAV_LIGHT = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-white.png';
   const LOGO_NAV_DARK  = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-black.png';
   const LOGO_FTR_LIGHT = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_vert_trans-white.png';
   const LOGO_FTR_DARK  = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_vert_trans-black.png';
+  const LOGO_ABT_LIGHT = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_vert_trans-black.png';
+  const LOGO_ABT_DARK  = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_vert_trans-white.png';
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -302,6 +286,8 @@
     if (nav) nav.src = theme === 'dark' ? LOGO_NAV_DARK : LOGO_NAV_LIGHT;
     var ftr = document.getElementById('footerLogo');
     if (ftr) ftr.src = theme === 'dark' ? LOGO_FTR_DARK : LOGO_FTR_LIGHT;
+    var abt = document.getElementById('aboutLogo');
+    if (abt) abt.src = theme === 'dark' ? LOGO_ABT_DARK : LOGO_ABT_LIGHT;
     var chk = document.getElementById('themeCheckbox');
     if (chk) chk.checked = (theme === 'dark');
   }
