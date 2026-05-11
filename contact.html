@@ -29,9 +29,9 @@
     .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(246,246,251,0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); z-index: 1000; transition: background 0.3s, border-color 0.3s; }
     [data-theme="dark"] .nav { background: rgba(10,10,18,0.85); }
     .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 26px; width: auto; display: block; }
-    .logo-dark { display: block; } .logo-light { display: none; }
-    [data-theme="dark"] .logo-dark { display: none; } [data-theme="dark"] .logo-light { display: block; }
+    .nav-logo img { height: 52px; width: auto; display: block; }
+    .logo-light { display: block; } .logo-dark { display: none; }
+    [data-theme="dark"] .logo-light { display: none; } [data-theme="dark"] .logo-dark { display: block; }
     .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 7px 14px; border-radius: 9999px; transition: all 0.2s; }
     .nav-links a:hover { color: var(--text-1); background: var(--bg-subtle); }
@@ -104,10 +104,10 @@
 
     /* ── Footer ── */
     .footer { border-top: 1px solid var(--border); padding: 40px 28px; text-align: center; }
-    .footer .logo-dark { display: block; margin: 0 auto 14px; height: 20px; }
-    .footer .logo-light { display: none; margin: 0 auto 14px; height: 20px; }
-    [data-theme="dark"] .footer .logo-dark { display: none; }
-    [data-theme="dark"] .footer .logo-light { display: block; }
+    .footer .logo-light { display: block; margin: 0 auto 14px; height: 20px; }
+    .footer .logo-dark { display: none; margin: 0 auto 14px; height: 20px; }
+    [data-theme="dark"] .footer .logo-light { display: none; }
+    [data-theme="dark"] .footer .logo-dark { display: block; }
     .footer-links { display: flex; justify-content: center; gap: 20px; margin: 14px 0; flex-wrap: wrap; }
     .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--blue); }
@@ -231,7 +231,7 @@
     <a href="contact.html">Contact</a>
     <a href="https://robbcrawford.github.io/chowen-labs-assets/chowen-labs-design-language.html" target="_blank">Brand Guidelines</a>
   </div>
-  <div class="footer-text">© 2026 Chowen Labs, LLC · Bremerton, WA · Built with care.</div>
+  <div class="footer-text">© 2026 Chowen Labs, LLC · Bainbridge Island, WA · Built with care.</div>
 </footer>
 
 <script>
