@@ -49,7 +49,6 @@
     .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
     .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); width:22px; }
 
-    /* ── Slide-in menu panel ── */
     /* ── Dropdown popover ── */
     .hamburger-wrap { position:relative; }
     .menu-panel {
@@ -73,11 +72,9 @@
     [data-theme="dark"] .menu-panel { box-shadow:0 8px 40px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.2); }
     .menu-panel.open { opacity:1; transform:scale(1) translateY(0); pointer-events:all; }
 
-    /* Lightweight backdrop — closes on click, no visual overlay */
     .menu-backdrop { position:fixed; inset:0; z-index:999; pointer-events:none; }
     .menu-backdrop.open { pointer-events:all; }
 
-    /* Menu nav links */
     .menu-nav { display:flex; flex-direction:column; padding:4px 8px; }
     .menu-nav a {
       font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500;
@@ -90,10 +87,8 @@
     .menu-nav a.active { color:var(--blue); font-weight:600; }
     .menu-nav a .menu-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
 
-    /* Menu divider */
     .menu-divider { height:1px; background:var(--border); margin:6px 14px; }
 
-    /* Theme toggle row */
     .menu-theme-row { display:flex; align-items:center; justify-content:space-between; padding:8px 22px 4px; gap:12px; }
     .menu-theme-label { font-size:14px; font-weight:500; color:var(--text-2); }
     .theme-switch { position:relative; width:44px; height:26px; cursor:pointer; flex-shrink:0; }
@@ -103,7 +98,6 @@
     [data-theme="dark"] .theme-track { background:rgba(41,121,255,.15); border-color:rgba(41,121,255,.3); }
     [data-theme="dark"] .theme-track::after { transform:translateX(18px); background:var(--blue); }
 
-    /* Stagger in */
     .menu-nav a { opacity:0; transform:translateY(-4px); transition:background .15s, color .15s, opacity .2s ease, transform .2s ease; }
     .menu-panel.open .menu-nav a:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:.06s; }
     .menu-panel.open .menu-nav a:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:.10s; }
@@ -139,7 +133,6 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
-
 
     .hero { min-height:100vh; padding-top:var(--nav-h); display:flex; align-items:center; position:relative; overflow:hidden; }
     .hero-bg { position:absolute; inset:0; z-index:0;
@@ -178,7 +171,22 @@
     .cta-strip::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(41,121,255,.12) 0%,transparent 70%); }
     .cta-strip h2 { font-family:'Nunito',sans-serif; font-size:38px; font-weight:900; letter-spacing:-.025em; color:#fff; margin-bottom:14px; position:relative; }
     .cta-strip p { font-size:17px; color:rgba(255,255,255,.6); margin-bottom:36px; position:relative; }
-    @media (max-width:768px) { .apps-grid{grid-template-columns:1fr} .phil-grid{grid-template-columns:1fr;gap:40px;padding:60px 20px} .cta-strip{margin:0 16px 60px;padding:52px 28px} .cta-strip h2{font-size:28px} }
+
+    /* Privacy commitment strip */
+    .privacy-strip { background:var(--bg-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:52px 28px; transition:background .3s,border-color .3s; }
+    .privacy-strip-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .privacy-heading { font-family:'Nunito',sans-serif; font-size:28px; font-weight:900; letter-spacing:-.02em; color:var(--text-1); line-height:1.15; margin-bottom:10px; }
+    .privacy-sub { font-size:15px; color:var(--text-2); line-height:1.7; }
+    .privacy-commitments { display:flex; flex-direction:column; gap:10px; }
+    .privacy-item { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); }
+    .privacy-item .check { color:#30D158; font-weight:800; font-size:15px; flex-shrink:0; }
+    @media (max-width:768px) {
+      .apps-grid{grid-template-columns:1fr}
+      .phil-grid{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+      .cta-strip{margin:0 16px 60px;padding:52px 28px}
+      .cta-strip h2{font-size:28px}
+      .privacy-strip-inner{grid-template-columns:1fr;gap:32px}
+    }
   </style>
 </head>
 <body>
@@ -262,11 +270,30 @@
   </div>
 </div>
 
+<!-- Privacy commitment section -->
+<section class="privacy-strip fade-up">
+  <div class="privacy-strip-inner">
+    <div>
+      <div class="eyebrow">Our commitment</div>
+      <div class="privacy-heading">No ads.<br>Not now. Not ever.</div>
+      <p class="privacy-sub" style="margin-top:12px;">Privacy isn't a feature tier or a checkbox — it's the foundation. Every Chowen Labs app is built on the same promise.</p>
+    </div>
+    <div class="privacy-commitments">
+      <div class="privacy-item"><span class="check">✓</span> No ads — not now, not ever</div>
+      <div class="privacy-item"><span class="check">✓</span> No tracking or behavioral analytics</div>
+      <div class="privacy-item"><span class="check">✓</span> No selling or sharing of usage data</div>
+      <div class="privacy-item"><span class="check">✓</span> No third-party data brokers</div>
+      <div class="privacy-item"><span class="check">✓</span> Your data stays on your device</div>
+    </div>
+  </div>
+</section>
+
 <div class="cta-strip fade-up">
   <h2>Something in the pipeline for you?</h2>
   <p>Follow along as we build — or get in touch if you have an idea worth pursuing.</p>
   <a href="contact.html" class="btn btn-primary">Get in touch →</a>
 </div>
+
 <footer class="footer">
   <img id="footerLogo" src="https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_vert_trans-black.png" alt="Chowen Labs">
   <div class="footer-links">
@@ -278,6 +305,7 @@
   </div>
   <div class="footer-text">© 2026 Chowen Labs, LLC &nbsp;·&nbsp; Bainbridge Island, WA &nbsp;·&nbsp; Built with care.</div>
 </footer>
+
 <script>
   const LOGO_NAV_LIGHT = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-white.png';
   const LOGO_NAV_DARK  = 'https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-black.png';
