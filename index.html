@@ -1,11 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>Chowen Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chowen Labs — Premium iOS Apps</title>
+  <meta name="description" content="Chowen Labs builds premium iOS apps for pilots, walkers, and everyday life. Crafted with care in Bremerton, WA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cyan: #00E5FF; --blue: #2979FF; --indigo: #6B3AE8;
+      --gradient: linear-gradient(135deg, #00E5FF 0%, #2979FF 50%, #6B3AE8 100%);
+      --bg: #F6F6FB; --bg-card: #FFFFFF; --bg-subtle: #EDEDF5;
+      --border: #E2E2EE; --text-1: #0F0F1A; --text-2: #56567A; --text-3: #9898B8;
+      --shadow-sm: 0 1px 3px rgba(15,15,26,0.05), 0 1px 2px rgba(15,15,26,0.04);
+      --shadow-md: 0 4px 16px rgba(15,15,26,0.08), 0 2px 6px rgba(15,15,26,0.04);
+      --shadow-lg: 0 12px 40px rgba(15,15,26,0.10), 0 4px 12px rgba(15,15,26,0.05);
+      --shadow-brand: 0 4px 20px rgba(41,121,255,0.28), 0 1px 4px rgba(41,121,255,0.14);
+      --nav-h: 68px;
+    }
+    [data-theme="dark"] {
+      --bg: #0A0A12; --bg-card: #111120; --bg-subtle: #1C1C2C;
+      --border: #252538; --text-1: #EFEFFA; --text-2: #8A8AAC; --text-3: #56567A;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.50);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s; }
+
+    /* ── Nav ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(246,246,251,0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); z-index: 1000; transition: background 0.3s, border-color 0.3s; }
+    [data-theme="dark"] .nav { background: rgba(10,10,18,0.85); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 26px; width: auto; display: block; }
+    .logo-dark { display: block; } .logo-light { display: none; }
+    [data-theme="dark"] .logo-dark { display: none; } [data-theme="dark"] .logo-light { display: block; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 7px 14px; border-radius: 9999px; transition: all 0.2s; }
+    .nav-links a:hover { color: var(--text-1); background: var(--bg-subtle); }
+    .nav-links a.active { color: var(--blue); background: rgba(41,121,255,0.08); }
+    .nav-theme { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 9999px; padding: 6px 14px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--text-2); cursor: pointer; transition: all 0.2s; margin-left: 8px; }
+    .nav-theme:hover { color: var(--text-1); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(41,121,255,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0,229,255,0.05) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 50% at 80% 20%, rgba(107,58,232,0.06) 0%, transparent 60%);
+    }
+    [data-theme="dark"] .hero-bg {
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(41,121,255,0.12) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0,229,255,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 50% at 80% 20%, rgba(107,58,232,0.10) 0%, transparent 60%);
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; padding: 80px 28px; position: relative; z-index: 1; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); background: rgba(41,121,255,0.08); border: 1px solid rgba(41,121,255,0.2);
+      padding: 5px 14px; border-radius: 9999px; margin-bottom: 28px;
+      animation: fadeDown 0.6s ease both;
+    }
+    .hero-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); animation: pulse 2s infinite; }
+    .hero-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(44px, 7vw, 80px);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1.02;
+      color: var(--text-1); margin-bottom: 22px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px); color: var(--text-2); line-height: 1.7;
+      max-width: 520px; margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+    .btn { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; padding: 13px 28px; border-radius: 9999px; border: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: var(--gradient); color: #fff; box-shadow: var(--shadow-brand); }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 30px rgba(41,121,255,0.4); }
+    .btn-secondary { background: var(--bg-card); color: var(--text-1); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+    /* ── App teaser strip ── */
+    .apps-strip { padding: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-card); transition: background 0.3s, border-color 0.3s; }
+    .apps-strip-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+    .apps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .app-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 20px;
+      padding: 24px; display: flex; flex-direction: column; gap: 12px;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, background 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+    .app-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .app-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--gradient); display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: var(--shadow-brand); flex-shrink: 0;
+    }
+    .app-name { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 800; color: var(--text-1); }
+    .app-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; flex: 1; }
+    .badge-dev { display: inline-flex; align-items: center; gap: 5px; background: rgba(41,121,255,0.08); border: 1px solid rgba(41,121,255,0.18); color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 9999px; }
+    .badge-dev::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); animation: pulse 2s infinite; }
+
+    /* ── Philosophy strip ── */
+    .philosophy { padding: 88px 28px; max-width: 1100px; margin: 0 auto; }
+    .phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .phil-pillars { display: flex; flex-direction: column; gap: 20px; margin-top: 36px; }
+    .pillar { display: flex; gap: 16px; align-items: flex-start; }
+    .pillar-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; box-shadow: var(--shadow-brand); }
+    .pillar-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800; color: var(--text-1); margin-bottom: 3px; }
+    .pillar-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .phil-quote {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md);
+      position: relative; overflow: hidden;
+    }
+    .phil-quote::before {
+      content: '"';
+      font-family: 'Nunito', sans-serif; font-size: 180px; font-weight: 900; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      position: absolute; top: -20px; left: 20px; opacity: 0.15;
+    }
+    .phil-quote-text { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 700; color: var(--text-1); line-height: 1.45; margin-bottom: 20px; position: relative; }
+    .phil-quote-attr { font-size: 13px; color: var(--text-3); }
+
+    /* ── CTA ── */
+    .cta-strip {
+      margin: 0 28px 80px; border-radius: 28px;
+      background: linear-gradient(135deg, #0A0A20, #111130);
+      border: 1px solid rgba(41,121,255,0.2);
+      padding: 72px 52px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(41,121,255,0.12) 0%, transparent 70%);
+    }
+    .cta-strip h2 { font-family: 'Nunito', sans-serif; font-size: 38px; font-weight: 900; letter-spacing: -0.025em; color: #fff; margin-bottom: 14px; position: relative; }
+    .cta-strip p { font-size: 17px; color: rgba(255,255,255,0.6); margin-bottom: 36px; position: relative; }
+    .cta-strip .btn-primary { position: relative; }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid var(--border); padding: 40px 28px; text-align: center; }
+    .footer .logo-dark { display: block; margin: 0 auto 14px; height: 20px; }
+    .footer .logo-light { display: none; margin: 0 auto 14px; height: 20px; }
+    [data-theme="dark"] .footer .logo-dark { display: none; }
+    [data-theme="dark"] .footer .logo-light { display: block; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; margin: 14px 0; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-text { font-size: 13px; color: var(--text-3); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .apps-grid { grid-template-columns: 1fr; }
+      .phil-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cta-strip { margin: 0 16px 60px; padding: 52px 28px; }
+      .cta-strip h2 { font-size: 28px; }
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Chowen Labs</h1>
-  <p>iOS app development. Coming soon.</p>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="logo-light" src="https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-black.png" alt="Chowen Labs">
+      <img class="logo-dark" src="https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-white.png" alt="Chowen Labs">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="apps.html">Apps</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-theme" onclick="toggleTheme()" id="themeBtn">☽ Dark</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-pill">Chowen Labs · Bremerton, WA</div>
+    <h1 class="hero-title">Apps built for<br><span class="gradient-text">real life.</span></h1>
+    <p class="hero-sub">Premium iOS tools crafted with purpose — for pilots, explorers, and everyday decisions that matter. Small studio, high standards.</p>
+    <div class="hero-actions">
+      <a href="apps.html" class="btn btn-primary">See Our Apps →</a>
+      <a href="about.html" class="btn btn-secondary">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- App teaser -->
+<section class="apps-strip">
+  <div class="apps-strip-inner">
+    <div class="eyebrow fade-up">In Development</div>
+    <h2 class="section-title fade-up" style="font-family:'Nunito',sans-serif; font-size:36px; font-weight:900; letter-spacing:-0.025em; color:var(--text-1); margin-bottom:8px;">What we're building</h2>
+    <p style="font-size:16px; color:var(--text-2); max-width:500px;" class="fade-up">Six apps in the pipeline — each one solving a real problem we've lived ourselves.</p>
+    <div class="apps-grid">
+      <div class="app-card fade-up">
+        <div class="app-icon">✈️</div>
+        <div><div class="app-name">Flight Notebook</div><div class="badge-dev" style="margin-top:6px;">In Development</div></div>
+        <div class="app-desc">A digital pilot logbook built for how aviators actually fly — fast entry, smart totals, always ready.</div>
+      </div>
+      <div class="app-card fade-up">
+        <div class="app-icon">🗺️</div>
+        <div><div class="app-name">Walk Tracker</div><div class="badge-dev" style="margin-top:6px;">In Development</div></div>
+        <div class="app-desc">Routes, milestones, and the quiet satisfaction of seeing how far you've gone. One step at a time.</div>
+      </div>
+      <div class="app-card fade-up">
+        <div class="app-icon">📚</div>
+        <div><div class="app-name">737 Study Cards</div><div class="badge-dev" style="margin-top:6px;">In Development</div></div>
+        <div class="app-desc">Flashcard-style systems knowledge for Boeing 737 pilots. Study smarter, brief faster.</div>
+      </div>
+      <div class="app-card fade-up">
+        <div class="app-icon">🌱</div>
+        <div><div class="app-name">Sobriety Tracker</div><div class="badge-dev" style="margin-top:6px;">In Development</div></div>
+        <div class="app-desc">Milestone tracking and quiet encouragement for the recovery journey. Private, clean, yours.</div>
+      </div>
+      <div class="app-card fade-up">
+        <div class="app-icon">💰</div>
+        <div><div class="app-name">Fore$ight</div><div class="badge-dev" style="margin-top:6px;">In Development</div></div>
+        <div class="app-desc">Personal finance clarity without the noise. Know what you actually have, and what comes next.</div>
+      </div>
+      <div class="app-card fade-up">
+        <div class="app-icon">⚡</div>
+        <div><div class="app-name">Brake Energy</div><div class="badge-dev" style="margin-top:6px;">In Development</div></div>
+        <div class="app-desc">737 brake energy calculation at your fingertips. Fast, accurate, built by a pilot who needs it.</div>
+      </div>
+    </div>
+    <div style="margin-top:32px; text-align:center;" class="fade-up">
+      <a href="apps.html" class="btn btn-secondary">View all apps →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy">
+  <div class="phil-grid">
+    <div class="fade-up">
+      <div class="eyebrow">Our philosophy</div>
+      <h2 style="font-family:'Nunito',sans-serif; font-size:34px; font-weight:900; letter-spacing:-0.025em; color:var(--text-1); line-height:1.1; margin-bottom:10px;">We build what<br>we wish existed.</h2>
+      <p style="font-size:16px; color:var(--text-2); line-height:1.7; margin-bottom:32px;">Every Chowen Labs app starts with a real problem — one we've actually lived. No trend-chasing, no feature bloat. Just thoughtful tools that earn a place on your home screen.</p>
+      <div class="phil-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🎯</div>
+          <div><div class="pillar-title">Purpose-built</div><div class="pillar-desc">Each app has one job. It does that job exceptionally well.</div></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✨</div>
+          <div><div class="pillar-title">Premium by default</div><div class="pillar-desc">Refined details, smooth interactions, zero clutter. Every screen matters.</div></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🔒</div>
+          <div><div class="pillar-title">Privacy first</div><div class="pillar-desc">Your data stays yours. No tracking, no ads, no compromises.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="phil-quote fade-up">
+      <div class="phil-quote-text">"The best tool is the one you actually reach for. We design for the moment you need it most."</div>
+      <div class="phil-quote-attr">— Robb Crawford, Founder · Chowen Labs</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip fade-up">
+  <h2>Something in the pipeline<br>for you?</h2>
+  <p>Follow along as we build — or get in touch if you have an idea worth pursuing.</p>
+  <a href="contact.html" class="btn btn-primary">Get in touch →</a>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <img class="logo-light" src="https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-black.png" alt="Chowen Labs">
+  <img class="logo-dark" src="https://raw.githubusercontent.com/robbcrawford/chowen-labs-assets/main/logos/Chowen_horiz_trans-white.png" alt="Chowen Labs">
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="apps.html">Apps</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://robbcrawford.github.io/chowen-labs-assets/chowen-labs-design-language.html" target="_blank">Brand Guidelines</a>
+  </div>
+  <div class="footer-text">© 2026 Chowen Labs, LLC · Bremerton, WA · Built with care.</div>
+</footer>
+
+<script>
+  function initTheme() {
+    const stored = localStorage.getItem('cl-theme');
+    const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = stored || sys;
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('themeBtn').textContent = theme === 'dark' ? '☀ Light' : '☽ Dark';
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('cl-theme', next);
+    document.getElementById('themeBtn').textContent = next === 'dark' ? '☀ Light' : '☽ Dark';
+  }
+  initTheme();
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
